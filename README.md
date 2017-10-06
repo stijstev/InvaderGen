@@ -8,6 +8,6 @@
     </ul>
   <strong>Notes:</strong>
     <ul>
-      <li>Creates Space Invader-esque characters</li>
+      <li>More customization options are possible from within the script but are not yet accessible to the user.</li>
     </ul>
 </p>

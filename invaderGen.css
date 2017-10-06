@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+h1 {
+    margin: auto;
+    font-family: "Press Start 2P";
+}
+#pageContent {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    margin-top: 5px;
+}
+#generateBtn {
+    margin: auto;
+    width: fit-content;
+    margin-top: 5px;
+    padding: 3%;
+}
+form {
+    width: fit-content;
+    margin: auto;
+}

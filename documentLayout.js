@@ -34,31 +34,36 @@ window.onload = function () {
     addListeners();
 
     function writeLoadResults() {
-        let loadResults = document.getElementById('loadResults');
-        let results = JSON.parse(localStorage.getItem("invaders"));
-        let tempStr = null;
-        let columnCounter = null;
-        let resultIndex = 0;
-
-        for (let i = 0; i < results.length; i + 3) {
-            tempStr = '<div class="g__row">'
-            for(let i = 0; i <= 3; i++){
-                result = results[resultIndex];
-                tempStr += `
-                <div class="g__column g__column-3">
-                    <div class="loadResult">
-                        <img src="${result.image}" class="resultImage"></img>
-                        <h3>${result.title}</h3>
-                        </p>${result.desc}</p>
+        if (!localStorage.getItem("invaders")) {
+            userMessage('userMessage', "No invaders to load, save some!")
+        } else {
+            let loadResults = document.getElementById('loadResults');
+            let results = JSON.parse(localStorage.getItem("invaders"));
+            let tempStr = null;
+            let columnCounter = null;
+            let resultIndex = 0;
+    
+            for (let i = 0; i < results.length; i + 3) {
+                tempStr = '<div class="g__row">'
+                for(let i = 0; i <= 3; i++){
+                    result = results[resultIndex];
+                    tempStr += `
+                    <div class="g__column g__column-3">
+                        <div class="loadResult">
+                            <img src="${result.image}" class="resultImage"></img>
+                            <h3>${result.title}</h3>
+                            </p>${result.desc}</p>
+                        </div>
                     </div>
-                </div>
-                `
-                console.log(tempStr);
-                resultIndex++
+                    `
+                    console.log(tempStr);
+                    resultIndex++
+                }
+                tempStr += '</div>'
+                loadResults.innerHTML += tempStr;
+                tempStr = null;
             }
-            tempStr += '</div>'
-            loadResults.innerHTML += tempStr;
-            tempStr = null;
         }
     }
 }
+        

@@ -4,6 +4,7 @@
 }
 :root {
     --border: 5px solid black;
+    --hover-backg: lightgray;
 }
 h1 {
     margin: auto;
@@ -54,18 +55,37 @@ input {
     display: none;
 }
 .loadResult {
-    width: fit-content;
     margin-left: 5px;
+    margin-top: 2vh;
     padding: 0px;
     border: var(--border);
     width: 95%;
     overflow: hidden;
-    max-height: 200px;
+    max-height: 450px;
+}
+.loadResult h3, .loadResult p{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 3px;
+}
+.loadResult p {
+    margin-top: 0px;
+}
+.loadResult:hover {
+    background-color: var(--hover-backg);
+}
+.resultImageContainer {
+    margin: auto;
+    overflow: hidden;
+    width: 150px;
+    height: 120px;
+    padding: 10px;
+    padding-left: 18%;
 }
 .resultImage {
-    width: 60%;
-    height: 50%;
-    margin: auto;
+    transform-origin: center center;
+    width: 100%;
+    height: 80%;
 }
 button {
     border: var(--border);
@@ -76,7 +96,7 @@ button {
     padding: 1em;
 }
 button:hover {
-    background-color: lightgray;
+    background-color: var(--hover-backg);
 }
 .nav {
     background-color: lightgray;

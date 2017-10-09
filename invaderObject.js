@@ -28,6 +28,7 @@ let Invader = function (amPixelsX, amPixelsY, pixelSize, colors) {
             y = canvas.height / 2 - ((this.properties.height / 2) * this.properties.pxSize);
         }
         let ctx = canvas.getContext("2d"); //using a canvas, I ain't no barbarian
+        ctx.imageSmoothingEnabled= false
         canvas.width = canvas.width;
         let currentY = 0;
 
@@ -47,17 +48,19 @@ let Invader = function (amPixelsX, amPixelsY, pixelSize, colors) {
     }
     this.createImage = function () {
         let canvas = document.querySelector("#invisibleCanvas"); //off-screen canvas
+        canvas.width = this.properties.width * 40;
+        canvas.height = this.properties.height * 40;
 
         let tempStore = this.properties.pxSize
         this.properties.pxSize = 40;
 
-        this.draw(canvas, 1, 1);
+        this.draw(canvas, 'center', 1);
         this.properties.pxSize = tempStore;
         return canvas.toDataURL("image/png", 1);
 
     }
     this.loadFromStorage = function () {
-
+        
     }
     this.saveToStorage = function () { //stores invader as a JSON in local storage
         let saveData = {};

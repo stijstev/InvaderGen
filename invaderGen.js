@@ -20,7 +20,7 @@ let inputs = {
     btnSave: document.querySelector('#saveBtn'),
     width: function(){
         let value = document.querySelector('#inputWidth').value;
-        if (isNaN(value) || value % 2 !== 0 || value == 0){
+        if (isNaN(value) || value % 2 !== 0 || value == 0 || value < 0){
             userMessage('errorMessage', 'Please enter a valid width. Number must be a multiple of 2 and must not contain letters');
         } else {
             return value;
@@ -28,7 +28,7 @@ let inputs = {
     },
     pxSize: function(){
         let value = document.querySelector('#inputPxSize').value;
-        if (isNaN(value) || value % 2 !== 0 || value == 0){
+        if (isNaN(value) || value == 0 || value < 0){
             userMessage('errorMessage', 'Please enter a valid pixel size. Field must not contain letters');
         } else {
             return value;

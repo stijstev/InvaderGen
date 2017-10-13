@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>InvaderGen</title>
     <link rel="stylesheet" href="invaderGen.css">
-    <link rel="shortcut icon" href="favicon.ico" id="favicon" type="image/x-icon">
+    <link rel="shortcut icon"  id="favicon" type="image/x-icon">
     <link rel="stylesheet" href="grid.css">
     <script src="documentLayout.js"></script>
 </head>
@@ -45,6 +45,10 @@
                         <p>Pixel Size</p>
                     </div>
                     <div class="menu-catergory g__column g__column-3">
+                        <h3>Draw using BinString:</h3>
+                        <input id="loadBinString"></input>
+                    </div>
+                    <div class="menu-catergory g__column g__column-3">
                         <h3>I'm done!</h3>
                         <button id="generateBtn">Generate!</button>
                     </div>
@@ -53,7 +57,7 @@
                 </div>
                 <div id="saveAnInvader">
                     <div class="menu-catergory g__column g__column-3">
-                        <h3>Let's save him!</h3>
+                        <h3>Save to gallery:</h3>
                         <input type="text" id="inputSaveName"></input>
                         <p>Name</p>
                         <input type="box" id="inputSaveDesc"></input>
@@ -62,6 +66,10 @@
                     <div class="menu-catergory g__column g__column-3">
                         <h3>I'm done!</h3>
                         <button id="saveBtn">Save!</button>
+                    </div>
+                    <div class="menu-catergory g__column g__column-6">
+                        <h3>BinString:</h3>
+                        <div id="binStringSave"></div>
                     </div>
                 </div>
                 <div class="g__column g__column-3">

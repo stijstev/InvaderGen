@@ -133,3 +133,8 @@ nav li:hover {
 #loadAnInvader {
     display: none;
 }
+.binStringSave {
+    max-height: 250px;
+    overflow: scroll;
+    border: var(--border);
+}

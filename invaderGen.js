@@ -20,19 +20,22 @@ let inputs = {
     btnSave: document.querySelector('#saveBtn'),
     width: function(){
         let value = document.querySelector('#inputWidth').value;
-        if (isNaN(value) || value % 2 !== 0 || value == 0 || value < 0){
-            userMessage('errorMessage', 'Please enter a valid width. Number must be a multiple of 2 and must not contain letters');
+        if (isNaN(value) || value % 2 !== 0 || value == 0 || value < 0){ //checks if input width is a number, if it is a multiple of 2, if it is not 0 and if it is not a negative number, assume the user is a toddler
+            userMessage('errorMessage', 'Please enter a valid width. Number must be a multiple of 2 and must not contain letters'); //notifies user of wrong input
         } else {
-            return value;
+            return value; //if value is valid it gets returned
         }
     },
     pxSize: function(){
         let value = document.querySelector('#inputPxSize').value;
-        if (isNaN(value) || value == 0 || value < 0){
-            userMessage('errorMessage', 'Please enter a valid pixel size. Field must not contain letters');
+        if (isNaN(value) || value == 0 || value < 0){ //checks if the pixelsize is a number, if it is not 0 and if it is not a negative number, assume the user is a toddler
+            userMessage('errorMessage', 'Please enter a valid pixel size. Field must not contain letters'); //notifies user of wrong input
         } else {
-            return value;
+            return value; //if value is valid it gets returned
         }
+    },
+    binString: function(){
+        return document.querySelector('#loadBinString').value;
     }
 }
 inputs.btnGenerate.addEventListener('click', function(e){
@@ -44,13 +47,22 @@ inputs.btnGenerate.addEventListener('click', function(e){
     
     let width = inputs.width()
     invader = new Invader(width, width, inputs.pxSize(), inputs.colors());
-    invader.generate(); //generates (but doesn't draw) the invader, requires two ints: width and height. Multiples of two only
+    if (inputs.binString()) {
+        invader.pixels = JSON.parse(inputs.binString()); //parse input string to JSON to use as pixels object for the draw function of invader
+    } else {
+        invader.generate(); //generates a binString (pixelarray)
+    }
     invader.draw(canvas, 'center', 'center') //use paramater 'center' on x or y to center the invader
+
+    let saveBinString = document.querySelector('#binStringSave');
+    saveBinString.setAttribute('class', 'binStringSave');
+    saveBinString.innerHTML = JSON.stringify(invader.pixels); //stringifies pixels object to display it in a div
 
     if (dynamicFavicon) { //invader is re-rendered off-screen for the favicon
         document.querySelector('#favicon').href = invader.createImage();
     }
 }, false);
+
 inputs.btnSave.addEventListener('click', function(){
     if (typeof invader !== 'null') {
         invader.saveToStorage();
@@ -64,6 +76,9 @@ function userMessage(type, message, timeout){
         timeout = 3500;
     }
     elUserMessage.innerHTML += `<p class="${type}">${message}</p>`;
-    setTimeout(function(){elUserMessage.removeChild(document.querySelector('.errorMessage'))}, 4000);
-    setTimeout(function(){elUserMessage.removeChild(document.querySelector('.userMessage'))}, 4000)
+    if (type == 'userMessage') {
+        setTimeout(function(){elUserMessage.removeChild(document.querySelector('.userMessage'))}, 4000)
+    } else {
+        setTimeout(function(){elUserMessage.removeChild(document.querySelector('.errorMessage'))}, 4000);
+    }
 }
